@@ -19,11 +19,19 @@
 <script>
   const v = document.getElementById("vid");
 
-  // Video startet stumm → Ton aktivieren
-  setTimeout(() => {
+  // Video starten, sobald es geladen ist
+  v.addEventListener('canplay', () => {
+    setTimeout(() => {
+      v.muted = false; // Ton aktivieren
+      v.play().catch(e => console.log("Autoplay blockiert, wartet auf User Gesture"));
+    }, 100);
+  });
+
+  // Optional: manuelles Tippen zum Starten, nur für Test
+  v.addEventListener('click', () => {
     v.muted = false;
-    v.play().catch(e => console.log("Autoplay mit Ton blockiert"));
-  }, 300);
+    v.play();
+  });
 
   // Rückkehr nach 20 Sekunden mit Fade
   const DURATION = 20000;
