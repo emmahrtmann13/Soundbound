@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Tag 1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="container">
+  <video id="vid" autoplay playsinline muted>
+    <source src="assets/tag7.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div id="fade"></div>
+<script src="fade.js"></script>
+
+<script>
+  const v = document.getElementById("vid");
+
+  // Video startet stumm → Ton aktivieren
+  setTimeout(() => {
+    v.muted = false;
+    v.play().catch(e => console.log("Autoplay mit Ton blockiert"));
+  }, 300);
+
+  // Rückkehr nach 20 Sekunden mit Fade
+  const DURATION = 20000;
+  setTimeout(() => {
+    crossfadeAndRedirect("index.html");
+  }, DURATION);
+</script>
+
+</body>
+</html>
